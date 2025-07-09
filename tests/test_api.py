@@ -30,7 +30,17 @@ def test_update_tasl(base_url, session):
 
     update = {"title": "Updated task", "completed": True}
     response = session.put(f"{base_url}/tasks/{task_id}", json=update)
-    assert response.status_code in [200, 204]  
+    assert response.status_code in [200, 204]
+
+# Read specific task test
+def test_get_task_by_id(base_url, session):
+    payload = {"title": "Fetch me", "completed": False}
+    response = session.post(f"{base_url}/tasks", json=payload)
+    task_id = response.json()["id"]
+
+    res = session.get(f"{base_url}/tasks/{task_id}")
+    assert response.status_code == 200
+    assert res.json()["title"] == "Fetch me"  
 
 
 
