@@ -54,6 +54,11 @@ def test_delete_task(base_url, session):
     response = session.get(f"{base_url}/tasks/{task_id}")
     assert response.status_code == 404
 
+# Not Found Check
+def test_get_invalid_task(base_url, session):
+    response = session.get(f"{base_url}/tasks/9sadasdasa99")
+    assert response.status_code == 404
+
 
 
 
