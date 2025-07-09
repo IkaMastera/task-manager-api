@@ -20,7 +20,17 @@ def test_create_task(base_url, session):
 def test_create_task_invalid_payload(base_url, session):
     payload = {"Invalid_field": "Oops"}
     response = session.post(f"{base_url}/tasks", json=payload)
-    assert response.status_code == 400  
+    assert response.status_code == 400
+
+# Create a test task for user updating information
+def test_update_tasl(base_url, session):
+    payload = {"title": "Temp task", "completed": False}
+    response = session.post(f"{base_url}/tasks", json=payload)
+    task_id = response.json().get("id")
+
+    update = {"title": "Updated task", "completed": True}
+    response = session.put(f"{base_url}/tasks/{task_id}", json=update)
+    assert response.status_code in [200, 204]  
 
 
 
