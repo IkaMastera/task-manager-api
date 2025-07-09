@@ -40,7 +40,20 @@ def test_get_task_by_id(base_url, session):
 
     res = session.get(f"{base_url}/tasks/{task_id}")
     assert response.status_code == 200
-    assert res.json()["title"] == "Fetch me"  
+    assert res.json()["title"] == "Fetch me"
+
+# Delete test for task
+def test_delete_task(base_url, session):
+    payload = {"title": "Delete me", "completed": False}
+    response = session.post(f"{base_url}/tasks", json=payload)
+    task_id = response.json()["id"]
+
+    response = session.delete(f"{base_url}/tasks/{task_id}")
+    assert response.status_code in [200, 204]
+
+    response = session.get(f"{base_url}/tasks/{task_id}")
+    assert response.status_code == 404
+
 
 
 
