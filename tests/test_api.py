@@ -16,6 +16,13 @@ def test_create_task(base_url, session):
     assert response.status_code == 201
     assert "id" in response.json()
 
+# Create a test for invalid payload
+def test_create_task_invalid_payload(base_url, session):
+    payload = {"Invalid_field": "Oops"}
+    response = session.post(f"{base_url}/tasks", json=payload)
+    assert response.status_code == 400  
+
+
 
 
 
