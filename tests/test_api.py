@@ -59,6 +59,11 @@ def test_get_invalid_task(base_url, session):
     response = session.get(f"{base_url}/tasks/9sadasdasa99")
     assert response.status_code == 404
 
+# Response time under threshold
+def test_response_time_under_500ms(base_url, session):
+    response = session.get(f"{base_url}/tasks")
+    assert response.elapsed.total_seconds() < 0.5
+
 
 
 
