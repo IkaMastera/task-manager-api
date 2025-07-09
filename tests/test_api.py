@@ -9,6 +9,13 @@ def test_get_all_tasks(base_url, session):
     response = session.get(f"{base_url}/tasks ")
     assert response.status_code == 200
 
+# Create Valid Task
+def test_create_task(base_url, session):
+    payload = {"title": "Write docs", "completed": False}
+    response = session.post(f"{base_url}/tasks", json=payload)
+    assert response.status_code == 201
+    assert "id" in response.json()
+
 
 
 
