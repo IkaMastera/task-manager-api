@@ -3,7 +3,7 @@ import requests
 
 @pytest.fixture(scope="session")
 def base_url():
-    return "http://localhost:8000"
+    return "https://jsonplaceholder.typicode.com"
 
 @pytest.fixture(scope="function")
 def session():
