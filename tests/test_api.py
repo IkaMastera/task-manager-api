@@ -37,12 +37,12 @@ def test_create_task_invalid_payload(base_url, session):
 #     payload = {"title": "Fetch me", "body": "desc", "userId": 1}
 #     response = session.post(f"{base_url}/posts", json=payload)
 #     task_id = response.json()["id"]
-
 #     res = session.get(f"{base_url}/posts/{task_id}")
 #     assert res.status_code == 200
 #     assert res.json()["title"] == "Fetch me"
 
 # Delete test for task
+
 def test_delete_task(base_url, session):
     payload = {"title": "Delete me", "completed": False}
     response = session.post(f"{base_url}/posts", json=payload)
