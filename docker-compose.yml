@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   app:
     build: .
@@ -8,14 +9,15 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:8000"]
       interval: 10s
       timeout: 5s
-      teries: 5
+      retries: 5
 
-test:
-  build:
-    context: .
-    dockerfile: Dockerfile
-  depends_on:
-    app:
-      condition: service_healthy
-  command: ["pytest", "--html=reports/report.html", "--self-contained-html"]
-  volumes: - ./reports:/app/reports    
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      app:
+        condition: service_healthy
+    command: ["pytest", "--html=reports/report.html", "--self-contained-html"]
+    volumes:
+      - ./reports:/app/reports
