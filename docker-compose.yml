@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 10s
+      timeout: 5s
+      teries: 5
+
+test:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  depends_on:
+    app:
+      condition: service_healthy
+  command: ["pytest", "--html=reports/report.html", "--self-contained-html"]
+  volumes: - ./reports:/app/reports    
