@@ -20,8 +20,14 @@ def test_root_route(base_url, session):
     
 #Basic Availability Test
 def test_get_all_tasks(base_url, session):
-    response = session.get(f"{base_url}/posts")
-    assert response.status_code == 200
+    logging.info("Testing get all tasks...")
+    try:
+        response = session.get(f"{base_url}/posts")
+        logging.info(f"Status Code: {response.status_code}")
+        assert response.status_code == 200
+    except Exception as e:
+        logging.error(f"test_get_all_tasks failed: {str(e)}")
+        raise
 
 # Create Valid Task
 def test_create_task(base_url, session):
