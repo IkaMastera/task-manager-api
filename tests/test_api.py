@@ -22,24 +22,24 @@ def test_create_task_invalid_payload(base_url, session):
     response = session.post(f"{base_url}/comments", json=payload)
     assert response.status_code in [201, 200]
 
-# # Create a test task for user updating information
-# def test_update_task(base_url, session):
-#     payload = {"title": "Temp task", "completed": False}
-#     response = session.post(f"{base_url}/posts", json=payload)
-#     task_id = response.json().get("id")
+# Create a test task for user updating information
+def test_update_task(base_url, session):
+     payload = {"title": "Temp task", "completed": False}
+     response = session.post(f"{base_url}/posts", json=payload)
+     task_id = response.json().get("id")
 
-#     update = {"title": "Updated task", "completed": True}
-#     res = session.put(f"{base_url}/posts/{task_id}", json=update)
-#     assert res.status_code in [200, 204]
+     update = {"title": "Updated task", "completed": True}
+     res = session.put(f"{base_url}/posts/{task_id}", json=update)
+     assert res.status_code in [200, 204]
 
-# # Read specific task test
-# def test_get_task_by_id(base_url, session):
-#     payload = {"title": "Fetch me", "body": "desc", "userId": 1}
-#     response = session.post(f"{base_url}/posts", json=payload)
-#     task_id = response.json()["id"]
-#     res = session.get(f"{base_url}/posts/{task_id}")
-#     assert res.status_code == 200
-#     assert res.json()["title"] == "Fetch me"
+# Read specific task test
+def test_get_task_by_id(base_url, session):
+     payload = {"title": "Fetch me", "body": "desc", "userId": 1}
+     response = session.post(f"{base_url}/posts", json=payload)
+     task_id = response.json()["id"]
+     res = session.get(f"{base_url}/posts/{task_id}")
+     assert res.status_code == 200
+     assert res.json()["title"] == "Fetch me"
 
 # Delete test for task
 
@@ -63,10 +63,6 @@ def test_get_invalid_task(base_url, session):
 def test_response_time_under_500ms(base_url, session):
     response = session.get(f"{base_url}/posts")
     assert response.elapsed.total_seconds() < 1.5
-
-
-
-
 
 
 @pytest.mark.parametrize("endpoint, expected", [
