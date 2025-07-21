@@ -13,9 +13,6 @@ ENV/
 # Pytest cache
 .pytest_cache/
 
-# Test reports
-reports/
-*.html
 
 # IDE/editor settings
 .vscode/
@@ -25,8 +22,6 @@ reports/
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
 
 # Docker
 *.tar

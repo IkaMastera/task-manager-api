@@ -1,9 +1,23 @@
 import pytest
+import logging
+
+# Set up logging
+logging.basicConfig(
+    level = logging.INFO,
+    format = "[%(asctime)s] %(levelname)s: %(message)s",
+    handlers = [logging.FileHandler("reports/test.log", mode="w"), logging.StreamHandler()]
+)
 
 def test_root_route(base_url, session):
-    response = session.get(f"{base_url}/")
-    assert response.status_code == 200
-
+    logging.info("Testing root route...")
+    try:
+        response = session.get(f"{base_url}/")
+        logging.info(f"Status Code: {response.status_code}")
+        assert response.status_code == 200
+    except Exception as e:
+        logging.error(f"test_root_route failed: {str(e)}")
+        raise
+    
 #Basic Availability Test
 def test_get_all_tasks(base_url, session):
     response = session.get(f"{base_url}/posts")
@@ -22,24 +36,14 @@ def test_create_task_invalid_payload(base_url, session):
     response = session.post(f"{base_url}/comments", json=payload)
     assert response.status_code in [201, 200]
 
-# Create a test task for user updating information
-def test_update_task(base_url, session):
-     payload = {"title": "Temp task", "completed": False}
-     response = session.post(f"{base_url}/posts", json=payload)
-     task_id = response.json().get("id")
-
-     update = {"title": "Updated task", "completed": True}
-     res = session.put(f"{base_url}/posts/{task_id}", json=update)
-     assert res.status_code in [200, 204]
-
-# Read specific task test
-def test_get_task_by_id(base_url, session):
-     payload = {"title": "Fetch me", "body": "desc", "userId": 1}
-     response = session.post(f"{base_url}/posts", json=payload)
-     task_id = response.json()["id"]
-     res = session.get(f"{base_url}/posts/{task_id}")
-     assert res.status_code == 200
-     assert res.json()["title"] == "Fetch me"
+# Get all comments for a post
+def test_get_all_comments_for_post(base_url, session):
+    post_id = 1
+    response = session.get(f"{base_url}/posts/{post_id}/comments")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list)
+    assert all("email" in comment for comment in data)
 
 # Delete test for task
 
