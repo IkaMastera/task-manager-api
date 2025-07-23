@@ -30,6 +30,7 @@ def test_create_task(base_url, session):
     try:
         payload = {"title": "Write docs", "completed": False}
         response = session.post(f"{base_url}/posts", json=payload)
+        logger.info(f"Status Code: {response.status_code}")
         assert response.status_code == 201
         assert "id" in response.json()
     except Exception as e:
@@ -42,6 +43,7 @@ def test_create_task_invalid_payload(base_url, session):
     try:
         payload = {"Invalid_field": "Oops"}
         response = session.post(f"{base_url}/comments", json=payload)
+        logger.info(f"Status Code: {response.status_code}")
         assert response.status_code in [201, 200]
     except Exception as e:
         logger.error(f"test_create_task_invalid_payload failed: {str(e)}")
@@ -53,6 +55,7 @@ def test_get_all_comments_for_post(base_url, session):
     try:
         post_id = 1
         response = session.get(f"{base_url}/posts/{post_id}/comments")
+        logger.info(f"Status Code: {response.status_code}")
         assert response.status_code == 200
         data = response.json()
         assert isinstance(data, list)
@@ -68,6 +71,7 @@ def test_delete_task(base_url, session):
     try:
         payload = {"title": "Delete me", "completed": False}
         response = session.post(f"{base_url}/posts", json=payload)
+        logger.info(f"Status Code: {response.status_code}")
         task_id = response.json()["id"]
 
         response = session.delete(f"{base_url}/posts/{task_id}")
@@ -84,6 +88,7 @@ def test_get_invalid_task(base_url, session):
     logger.info("Testing get invalid task...")
     try:
         response = session.get(f"{base_url}/posts/999999")
+        logger.info(f"Status Code: {response.status_code}")
         assert response.status_code == 404
     except Exception as e:
         logger.error(f"test_get_invalid_task failed: {str(e)}")
@@ -94,6 +99,7 @@ def test_response_time_under_500ms(base_url, session):
     logger.info("Testing response time under 500ms...")
     try:
         response = session.get(f"{base_url}/posts")
+        logger.info(f"Status Code: {response.status_code}")
         assert response.elapsed.total_seconds() < 0.5
     except Exception as e:
         logger.error(f"test_response_time_under_500ms failed: {str(e)}")
