@@ -5,7 +5,7 @@ __pycache__/
 *.pyd
 *.pkl
 
-reports/
+.reports/
 
 # Virtual environment
 venv/
