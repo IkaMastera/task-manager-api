@@ -16,8 +16,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run pytest
+      - name: Run tests with pytest
         run: |
-          pytest
+          mkdir -p reports
+          pytest --tb=short --disable-warnings
