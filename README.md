@@ -40,3 +40,7 @@ The goal of this project is to simulate a real-world QA Automation + DevOps work
 - Response time checks
 - Invalid data tests
 - Logging and error handling
+
+📁 Output:
+- HTML report (`reports/report.html`)
+- Log file (`reports/test.log`)
