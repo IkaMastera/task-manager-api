@@ -44,3 +44,31 @@ The goal of this project is to simulate a real-world QA Automation + DevOps work
 📁 Output:
 - HTML report (`reports/report.html`)
 - Log file (`reports/test.log`)
+
+--
+
+## Load Testing
+Used locust to simulate user load and monitor performance thresholds.
+
+--
+
+## Project Structure
+task-manager-api/
+├── .github/
+│ └── workflows/
+│ └── pytest.yml
+├── reports/
+│ ├── report.html
+│ └── test.log
+├── tests/
+│ └── test_api.py
+│ └── conftest.py
+│ └── __init__.py
+├── utils/
+│ └── logger.py
+├── .gitignore # Ignores logs, reports, venv, etc.
+├── docker-compose.yml # Runs app and test containers
+├── requirements.txt # Python dependencies
+├── run.sh # Bash script to run tests locally
+├── test.sh # Bash script to run tests inside Docker
+└── README.md # Project documentation
