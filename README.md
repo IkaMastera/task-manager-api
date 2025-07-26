@@ -52,23 +52,29 @@ Used locust to simulate user load and monitor performance thresholds.
 
 --
 
-## Project Structure
+<details>
+<summary><strong>📁 Project Structure</strong></summary>
+
+```bash
 task-manager-api/
 ├── .github/
-│ └── workflows/
-│ └── pytest.yml
+│   └── workflows/
+│       └── pytest.yml               # CI/CD pipeline with GitHub Actions
 ├── reports/
-│ ├── report.html
-│ └── test.log
+│   ├── report.html                  # Pytest HTML report (auto-generated)
+│   └── test.log                     # Log output from tests
 ├── tests/
-│ └── test_api.py
-│ └── conftest.py
-│ └── __init__.py
+│   ├── __init__.py
+│   ├── confest.py
+│   └── test_api.py                  # Main API test suite using pytest
 ├── utils/
-│ └── logger.py
-├── .gitignore # Ignores logs, reports, venv, etc.
-├── docker-compose.yml # Runs app and test containers
-├── requirements.txt # Python dependencies
-├── run.sh # Bash script to run tests locally
-├── test.sh # Bash script to run tests inside Docker
-└── README.md # Project documentation
+│   └── logger.py                    # Reusable logger config
+├── .gitignore                       # Ignores logs, reports, venv, etc.
+├── docker-compose.yml              # Runs app and test containers
+├── requirements.txt                # Python dependencies
+├── run.sh                          # Bash script to run tests locally
+├── test.sh                         # Bash script to run tests inside Docker
+└── README.md                       # Project documentation
+```
+
+</details>
