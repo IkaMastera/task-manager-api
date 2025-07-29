@@ -1,4 +1,4 @@
-# 🧪 Task Manager API - QA Automation & DevOps Portfolio Project
+# Task Manager API - QA Automation & DevOps Portfolio Project
 
 Welcome to my QA Automation + DevOps showcase project. This repo demonstrates how to build a reliable, testable, and containerized API testing pipeline using modern tools and best practices.
 
@@ -16,7 +16,7 @@ The goal of this project is to simulate a real-world QA Automation + DevOps work
 
 ---
 
-## 🔧 Tech Stack
+## Tech Stack
 
 | Tool         | Purpose                                |
 |--------------|----------------------------------------|
